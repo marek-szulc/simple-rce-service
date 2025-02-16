@@ -1,10 +1,10 @@
-from flask import Flask, request, render_template_string
 import os
+from flask import Flask, request, render_template_string
 
+os.environ["FLAG"] = "CTF{super_secret_flag}"
 app = Flask(__name__)
-flag = os.getenv("FLAG", "No flag found")
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         return "Login failed. Please try again."
@@ -21,7 +21,8 @@ def admin():
     cmd = request.args.get("cmd", "")
     if cmd:
         try:
-            result = result = os.popen(cmd).read()
+            result = "TODO: change this for prod: result = os.popen(cmd).read() !!!!!!!!!!!!!!!!"
+            result += os.popen(cmd).read()
             return f"Command output: {result}"
         except Exception as e:
             return f"Error: {str(e)}"

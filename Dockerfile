@@ -7,8 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE 5000
+# RUN sed -i 's/os\.popen(cmd)\.read()/"RCE Disabled"/' service.py # one of the ways to patch it
 
-ENV FLAG="CTF{super_secret_flag}"
+EXPOSE 5000
 
 CMD ["python", "service.py"]
